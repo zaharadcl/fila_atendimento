@@ -1,4 +1,9 @@
 # fila_atendimento
+## 🌐 Acesso ao Protótipo
+
+O sistema pode ser acessado online através do GitHub Pages:
+
+https://zaharadcl.github.io/fila_atendimento/
 # Sistema de Fila de Atendimento
 
 Projeto de banco de dados desenvolvido em PostgreSQL para gerenciamento de filas, pacientes, atendentes e consultas.
