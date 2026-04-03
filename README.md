@@ -65,18 +65,43 @@ erDiagram
 		string status  ""  
 	}
 
+	%% ===== NOVAS TABELAS (GAMIFICAÇÃO) =====
+
+	PONTUACAO_ATENDENTE {
+		int id_atendente PK,FK ""  
+		int pontos  ""  
+	}
+
+	RECOMPENSA {
+		int id_recompensa PK ""  
+		string descricao  ""  
+		int pontos_necessarios  ""  
+	}
+
+	ATENDENTE_RECOMPENSA {
+		int id_atendente PK,FK ""  
+		int id_recompensa PK,FK ""  
+		datetime data_resgate  ""  
+	}
+
+	%% ===== RELACIONAMENTOS ORIGINAIS =====
+
 	PESSOA||--o|PACIENTE:"é"
 	PESSOA||--o|ATENDENTE:"é"
 	ESPECIALIDADE||--o{ATENDENTE:"possui"
 	ESPECIALIDADE||--o{FILA:"gera"
 	FILA||--o{FILA_ATENDIMENTO:"contém"
-	PACIENTE||--o{FILA_ATENDIMENTO:"entraa"
+	PACIENTE||--o{FILA_ATENDIMENTO:"entra"
 	PRIORIDADE||--o{FILA_ATENDIMENTO:"define"
 	PACIENTE||--o{CONSULTA:"realiza"
 	ATENDENTE||--o{CONSULTA:"atende"
-```
 
----
+	%% ===== RELACIONAMENTOS NOVOS =====
+
+	ATENDENTE||--||PONTUACAO_ATENDENTE:"possui"
+	ATENDENTE||--o{ATENDENTE_RECOMPENSA:"resgata"
+	RECOMPENSA||--o{ATENDENTE_RECOMPENSA:"é_resgatada"
+```
 
 ## 📂 Estrutura do Projeto
 
@@ -115,5 +140,25 @@ Execute os scripts na seguinte ordem:
 * Registro de consultas
 
 ---
+## 🚀 Inovação: Gamificação de Atendentes
+
+Foi implementado um sistema de gamificação voltado para os atendentes, com o objetivo de incentivar produtividade e engajamento.
+
+### 🎯 Funcionalidades
+
+* Atendentes acumulam pontos a cada consulta realizada
+* Pontos podem ser trocados por recompensas (como horas de folga)
+* Histórico de recompensas resgatadas
+
+### 📊 Novas tabelas
+
+* `pontuacao_atendente` → controle de pontos dos atendentes
+* `recompensa` → catálogo de recompensas disponíveis
+* `atendente_recompensa` → histórico de resgates
+
+### 💡 Objetivo
+
+Incentivar maior produtividade e qualidade no atendimento por meio de recompensas, alinhando o sistema com práticas modernas de gestão.
+
 
 
